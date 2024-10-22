@@ -53,6 +53,8 @@
     "print": "cpp",
     "algorithm": "cpp",
     "cassert": "cpp",
-    "random": "cpp"
+    "random": "cpp",
+    "iomanip": "cpp",
+    "pthread.h": "c"
   }
 }

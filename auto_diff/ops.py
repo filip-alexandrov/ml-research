@@ -165,7 +165,7 @@ class Reshape:
         return np.reshape(x.value, shape, **kwargs)
 
     def backward(g, x, z):
-        # z = reshape(x, shape)
+        # z = reshape(x, shape), reshapes grad back to x's shape
         # dz / dx = 1 => g_x = g
         return [g.reshape(x.shape)]
 

@@ -1,0 +1,8 @@
+// memfile.dat
+// contains up to 128 lines of 32 bit hex numbers
+// defining the contents of the rom 
+// from first to last address content
+01234567
+89ABCDEF
+FFFFFFFF
+A5A5A5A5
