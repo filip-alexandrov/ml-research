@@ -1,0 +1,138 @@
+user@ubuntu-4gb-nbg1-3:~/workspace$ (machine with 16 vcpus, 1 thread/vcpu)
+[B/B/B/B/./././././././././././.] shows threads accessible by the mpi process, however main thread of the process is bound to a single constant core 
+OpenMP will take over inside the MPI, then detect 4 threads and parallize inside parallel regions
+
+OMP_DISPLAY_ENV=true OMP_DISPLAY_AFFINITY=true OMP_PLACES=cores OMP_PROC_BIND=true mpirun --report-bindings --map-by slot:PE=4 --bind-to core -np 4 prog
+
+[ubuntu-4gb-nbg1-3:02722] MCW rank 0 bound to socket 0[core 0[hwt 0]], socket 0[core 1[hwt 0]], socket 0[core 2[hwt 0]], socket 0[core 3[hwt 0]]: [B/B/B/B/./././././././././././.]
+
+OPENMP DISPLAY ENVIRONMENT BEGIN
+  _OPENMP = '201511'
+  OMP_DYNAMIC = 'FALSE'
+  OMP_NESTED = 'FALSE' <- no nested hyperthreading enabled
+  OMP_NUM_THREADS = '4' <- because of dynamic will take over 100% resources (4 threads per process)
+  OMP_SCHEDULE = 'DYNAMIC' <- default
+  OMP_PROC_BIND = 'TRUE' <- each openmp thread will stay on its core / thread
+  OMP_PLACES = '{0},{1},{2},{3}' <- cores used by OpenMP on this process, on hyperthreaded: {0, 16}, since hyperthreads have idx = # cores + n
+  OMP_STACKSIZE = '0'
+  OMP_WAIT_POLICY = 'PASSIVE'
+  OMP_THREAD_LIMIT = '4294967295'
+  OMP_MAX_ACTIVE_LEVELS = '1'
+  OMP_NUM_TEAMS = '0'
+  OMP_TEAMS_THREAD_LIMIT = '0'
+  OMP_CANCELLATION = 'FALSE'
+  OMP_DEFAULT_DEVICE = '0'
+  OMP_MAX_TASK_PRIORITY = '0'
+  OMP_DISPLAY_AFFINITY = 'TRUE'
+  OMP_AFFINITY_FORMAT = 'level %L thread %i affinity %A'
+  OMP_ALLOCATOR = 'omp_default_mem_alloc'
+  OMP_TARGET_OFFLOAD = 'DEFAULT'
+OPENMP DISPLAY ENVIRONMENT END
+[ubuntu-4gb-nbg1-3:02722] MCW rank 1 bound to socket 0[core 4[hwt 0]], socket 0[core 5[hwt 0]], socket 0[core 6[hwt 0]], socket 0[core 7[hwt 0]]: [././././B/B/B/B/./././././././.]
+
+OPENMP DISPLAY ENVIRONMENT BEGIN
+  _OPENMP = '201511'
+  OMP_DYNAMIC = 'FALSE'
+  OMP_NESTED = 'FALSE'
+  OMP_NUM_THREADS = '4'
+  OMP_SCHEDULE = 'DYNAMIC'
+  OMP_PROC_BIND = 'TRUE'
+  OMP_PLACES = '{4},{5},{6},{7}'
+  OMP_STACKSIZE = '0'
+  OMP_WAIT_POLICY = 'PASSIVE'
+  OMP_THREAD_LIMIT = '4294967295'
+  OMP_MAX_ACTIVE_LEVELS = '1'
+  OMP_NUM_TEAMS = '0'
+  OMP_TEAMS_THREAD_LIMIT = '0'
+  OMP_CANCELLATION = 'FALSE'
+  OMP_DEFAULT_DEVICE = '0'
+  OMP_MAX_TASK_PRIORITY = '0'
+  OMP_DISPLAY_AFFINITY = 'TRUE'
+  OMP_AFFINITY_FORMAT = 'level %L thread %i affinity %A'
+  OMP_ALLOCATOR = 'omp_default_mem_alloc'
+  OMP_TARGET_OFFLOAD = 'DEFAULT'
+OPENMP DISPLAY ENVIRONMENT END
+[ubuntu-4gb-nbg1-3:02722] MCW rank 2 bound to socket 0[core 8[hwt 0]], socket 0[core 9[hwt 0]], socket 0[core 10[hwt 0]], socket 0[core 11[hwt 0]]: [././././././././B/B/B/B/./././.]
+[ubuntu-4gb-nbg1-3:02722] MCW rank 3 bound to socket 0[core 12[hwt 0]], socket 0[core 13[hwt 0]], socket 0[core 14[hwt 0]], socket 0[core 15[hwt 0]]: [././././././././././././B/B/B/B]
+
+OPENMP DISPLAY ENVIRONMENT BEGIN
+  _OPENMP = '201511'
+  OMP_DYNAMIC = 'FALSE'
+  OMP_NESTED = 'FALSE'
+  OMP_NUM_THREADS = '4'
+  OMP_SCHEDULE = 'DYNAMIC'
+  OMP_PROC_BIND = 'TRUE'
+  OMP_PLACES = '{8},{9},{10},{11}'
+  OMP_STACKSIZE = '0'
+  OMP_WAIT_POLICY = 'PASSIVE'
+  OMP_THREAD_LIMIT = '4294967295'
+  OMP_MAX_ACTIVE_LEVELS = '1'
+  OMP_NUM_TEAMS = '0'
+  OMP_TEAMS_THREAD_LIMIT = '0'
+  OMP_CANCELLATION = 'FALSE'
+  OMP_DEFAULT_DEVICE = '0'
+  OMP_MAX_TASK_PRIORITY = '0'
+  OMP_DISPLAY_AFFINITY = 'TRUE'
+  OMP_AFFINITY_FORMAT = 'level %L thread %i affinity %A'
+  OMP_ALLOCATOR = 'omp_default_mem_alloc'
+  OMP_TARGET_OFFLOAD = 'DEFAULT'
+OPENMP DISPLAY ENVIRONMENT END
+
+OPENMP DISPLAY ENVIRONMENT BEGIN
+  _OPENMP = '201511'
+  OMP_DYNAMIC = 'FALSE'
+  OMP_NESTED = 'FALSE'
+  OMP_NUM_THREADS = '4'
+  OMP_SCHEDULE = 'DYNAMIC'
+  OMP_PROC_BIND = 'TRUE'
+  OMP_PLACES = '{12},{13},{14},{15}'
+  OMP_STACKSIZE = '0'
+  OMP_WAIT_POLICY = 'PASSIVE'
+  OMP_THREAD_LIMIT = '4294967295'
+  OMP_MAX_ACTIVE_LEVELS = '1'
+  OMP_NUM_TEAMS = '0'
+  OMP_TEAMS_THREAD_LIMIT = '0'
+  OMP_CANCELLATION = 'FALSE'
+  OMP_DEFAULT_DEVICE = '0'
+  OMP_MAX_TASK_PRIORITY = '0'
+  OMP_DISPLAY_AFFINITY = 'TRUE'
+  OMP_AFFINITY_FORMAT = 'level %L thread %i affinity %A'
+  OMP_ALLOCATOR = 'omp_default_mem_alloc'
+  OMP_TARGET_OFFLOAD = 'DEFAULT'
+OPENMP DISPLAY ENVIRONMENT END
+Threads required 1, threads given 1 
+Threads required 1, threads given 1 
+Threads required 1, threads given 1 
+Threads required 1, threads given 1 
+level 1 thread 0x7f0a30794c40 affinity 0
+level 1 thread 0x7f0a2cb26640 affinity 1
+level 1 thread 0x7f0a27fff640 affinity 2
+level 1 thread 0x7f0a277fe640 affinity 3
+level 1 thread 0x7fbbbe960c40 affinity 8
+level 1 thread 0x7fbbb6cf0640 affinity 9
+level 1 thread 0x7fbbb64ef640 affinity 10
+level 1 thread 0x7fbbb5cee640 affinity 11
+level 1 thread 0x7fcb8e547c40 affinity 4
+level 1 thread 0x7fcb868d9640 affinity 5
+level 1 thread 0x7fcb860d8640 affinity 6
+level 1 thread 0x7fdfa6413c40 affinity 12
+level 1 thread 0x7fdf9e7a1640 affinity 13
+level 1 thread 0x7fdf9dfa0640 affinity 14
+level 1 thread 0x7fdf9d79f640 affinity 15
+level 1 thread 0x7fcb858d7640 affinity 7
+Process 2 out of 4 processes, Thread 1 out of 4 threads
+Process 2 out of 4 processes, Thread 3 out of 4 threads
+Process 2 out of 4 processes, Thread 2 out of 4 threads
+Process 2 out of 4 processes, Thread 0 out of 4 threads
+Process 3 out of 4 processes, Thread 3 out of 4 threads
+Process 3 out of 4 processes, Thread 1 out of 4 threads
+Process 3 out of 4 processes, Thread 2 out of 4 threads
+Process 3 out of 4 processes, Thread 0 out of 4 threads
+Process 0 out of 4 processes, Thread 2 out of 4 threads
+Process 0 out of 4 processes, Thread 3 out of 4 threads
+Process 0 out of 4 processes, Thread 1 out of 4 threads
+Process 0 out of 4 processes, Thread 0 out of 4 threads
+Process 1 out of 4 processes, Thread 1 out of 4 threads
+Process 1 out of 4 processes, Thread 3 out of 4 threads
+Process 1 out of 4 processes, Thread 0 out of 4 threads
+Process 1 out of 4 processes, Thread 2 out of 4 threads
